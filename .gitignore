@@ -13,3 +13,5 @@
 
 pkg/
 src/github.com/
+bin/
+src/

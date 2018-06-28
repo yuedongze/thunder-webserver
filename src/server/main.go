@@ -28,7 +28,8 @@ type server struct {
 func (s *server) registerQuery(schema *schemabuilder.Schema) {
 	obj := schema.Query()
 
-	obj.FieldFunc("posts", func() []post {
+	obj.FieldFunc("posts", func(ctx context.Context) []post {
+		reactive.InvalidateAfter(ctx, 5 * time.Second)
 		return s.posts
 	})
 }
